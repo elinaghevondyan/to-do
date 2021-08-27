@@ -1,0 +1,41 @@
+html {
+  position: relative;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  color: $color-text;
+  background-color: $color-body;
+  font-size: $base-font-size;
+  font-family: $font-primary;
+  outline: none;
+  word-wrap: break-word;
+  font-weight: $fw-400;
+}
+
+*, *:before, *:after {
+  outline: none;
+  box-sizing: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: ($cont-width + $cont-padding);
+  padding-left: ($cont-padding / 2);
+  padding-right: ($cont-padding / 2);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-content {
+  padding: 84px 0 40px 260px;
+}
+
+a {
+  transition: $trsn-dur;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

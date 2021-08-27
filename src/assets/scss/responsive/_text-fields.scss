@@ -1,0 +1,20 @@
+@media (max-width: $screen-sm-max) {
+
+	.text-field {
+
+		// Transparent input styles
+
+		&.transparent {
+
+			input, textarea {
+				font-size: $fs-md;
+				padding: 0 30px 0 20px;
+			}
+
+			input {
+				height: 40px;
+			}
+		}
+	}
+	
+}

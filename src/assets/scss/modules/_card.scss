@@ -1,0 +1,33 @@
+/* Card styles */
+
+.card {
+	background-color: #ffffff;
+
+	.card-header {
+		background-color: #fafafa;
+		border-bottom: 1px solid $color-border;
+
+		.card-title {
+			color: $color-grey-dark;
+		}
+	}
+
+	.card-body {
+		padding: 24px;
+		color: $color-black;
+	}
+
+	.card-footer {
+		border-top: 1px solid $color-border;
+		text-align: right;
+	}
+
+	.card-header, 
+	.card-footer {
+		padding: 30px 40px;
+	}
+
+	&.shadow {
+		box-shadow: 2px 2px 28px rgba(0, 0, 0, 0.1);
+	}
+}

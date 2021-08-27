@@ -1,0 +1,44 @@
+/* Typography */
+
+/* Text colors */
+
+@each $key,$val in $color-palette {
+	.color-#{$key} {
+		color: #{$val};
+	}
+}
+
+/* Font family */
+
+@each $key,$val in $font-family {
+
+	.font-#{$key} {
+		font-family: #{$val};
+	}
+}
+
+/* Font sizes */
+
+@each $key,$val in $text-font-sizes {
+
+	.fs-#{$key} {
+		font-size: #{$val};
+	}
+}
+
+/* Heading sizes */
+
+@each $key,$val in $heading-font-sizes {
+	#{$key}, .#{$key} {
+		font-size: #{$val};
+	}
+}
+
+/* Font weights */
+
+@each $key,$val in $font-weights {
+
+	.fw-#{$key} {
+		font-weight: #{$val};
+	}
+}

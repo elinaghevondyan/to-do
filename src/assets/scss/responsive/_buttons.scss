@@ -1,0 +1,34 @@
+@media (max-width: $screen-sm-max) {
+
+	.btn {
+		height: 40px;
+
+		&.filled {
+			line-height: 40px;
+		}
+
+		&.outline {
+			line-height: 36px;
+		}
+
+		&.link {
+			line-height: 40px;
+		}
+
+		&[disabled], &.disabled {
+			line-height: 40px;
+		}
+
+		&.with-icon {
+
+			&.hide-text-mobile {
+				padding: 0 6px;
+
+				span {
+					display: none;
+				}
+			}
+		}
+	}
+
+}

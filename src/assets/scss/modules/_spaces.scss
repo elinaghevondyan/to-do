@@ -1,0 +1,106 @@
+@each $key-spaces,$val-spaces in $spaces {
+  .m-#{$key-spaces} {
+    margin: #{$val-spaces};
+  }
+  .mt-#{$key-spaces} {
+    margin-top: #{$val-spaces};
+  }
+  .mr-#{$key-spaces} {
+    margin-right: #{$val-spaces};
+  }
+  .mb-#{$key-spaces} {
+    margin-bottom: #{$val-spaces};
+  }
+  .ml-#{$key-spaces} {
+    margin-left: #{$val-spaces};
+  }
+  .my-#{$key-spaces} {
+    margin-top: #{$val-spaces};
+    margin-bottom: #{$val-spaces};
+  }
+  .mx-#{$key-spaces} {
+    margin-left: #{$val-spaces};
+    margin-right: #{$val-spaces};
+  }
+
+  .p-#{$key-spaces} {
+    padding: #{$val-spaces};
+  }
+  .pt-#{$key-spaces} {
+    padding-top: #{$val-spaces};
+  }
+  .pr-#{$key-spaces} {
+    padding-right: #{$val-spaces};
+  }
+  .pb-#{$key-spaces} {
+    padding-bottom: #{$val-spaces};
+  }
+  .pl-#{$key-spaces} {
+    padding-left: #{$val-spaces};
+  }
+  .py-#{$key-spaces} {
+    padding-top: #{$val-spaces};
+    padding-bottom: #{$val-spaces};
+  }
+  .px-#{$key-spaces} {
+    padding-left: #{$val-spaces};
+    padding-right: #{$val-spaces};
+  }
+}
+
+@each $key-resolutions, $val-resolutions in $resolutions {
+
+  @media (min-width: #{$val-resolutions}) {
+
+    @each $key-spaces, $val-spaces in $spaces {
+
+      .m-#{$key-resolutions}-#{$key-spaces} {
+        margin: #{$val-spaces};
+      }
+      .mt-#{$key-resolutions}-#{$key-spaces} {
+        margin-top: #{$val-spaces};
+      }
+      .mr-#{$key-resolutions}-#{$key-spaces} {
+        margin-right: #{$val-spaces};
+      }
+      .mb-#{$key-resolutions}-#{$key-spaces} {
+        margin-bottom: #{$val-spaces};
+      }
+      .ml-#{$key-resolutions}-#{$key-spaces} {
+        margin-left: #{$val-spaces};
+      }
+      .my-#{$key-resolutions}-#{$key-spaces} {
+        margin-top: #{$val-spaces};
+        margin-bottom: #{$val-spaces};
+      }
+      .mx-#{$key-resolutions}-#{$key-spaces} {
+        margin-left: #{$val-spaces};
+        margin-right: #{$val-spaces};
+      }
+
+      .p-#{$key-resolutions}-#{$key-spaces} {
+        padding: #{$val-spaces};
+      }
+      .pt-#{$key-resolutions}-#{$key-spaces} {
+        padding-top: #{$val-spaces};
+      }
+      .pr-#{$key-resolutions}-#{$key-spaces} {
+        padding-right: #{$val-spaces};
+      }
+      .pb-#{$key-resolutions}-#{$key-spaces} {
+        padding-bottom: #{$val-spaces};
+      }
+      .pl-#{$key-resolutions}-#{$key-spaces} {
+        padding-left: #{$val-spaces};
+      }
+      .py-#{$key-resolutions}-#{$key-spaces} {
+        padding-top: #{$val-spaces};
+        padding-bottom: #{$val-spaces};
+      }
+      .px-#{$key-resolutions}-#{$key-spaces} {
+        padding-left: #{$val-spaces};
+        padding-right: #{$val-spaces};
+      }
+    }
+  }
+}

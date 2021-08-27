@@ -1,0 +1,61 @@
+/* Table styles */
+
+// Table global styles
+
+table {
+	width: 100%;
+}
+
+// Table styles based on existing types
+
+.table-main {
+	overflow-x: auto;
+
+	table {
+		text-align: left;
+		min-width: 830px;
+
+		th, td {
+			padding: 16px;
+			text-align: center;
+		}
+
+		tr {
+			border-bottom: 1px solid $color-border;
+		}
+
+		a {
+			text-decoration: underline;
+		}
+
+		.actions {
+
+			li {
+				display: flex;
+
+				a {
+					padding: 0 5px;
+				}
+			}
+
+			.delete {
+
+				i {
+					color: $color-warning;
+					font-size: 20px;
+				}
+			}
+		}
+	}
+
+	&.white {
+		background-color: #ffffff;
+	}
+
+	&.fixed-layout {
+
+		table {
+			table-layout: fixed;
+		}
+	}
+}

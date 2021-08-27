@@ -1,0 +1,123 @@
+/* Button styles */
+
+.btn {
+	font-family: $font-primary;
+	font-size: $fs-sm;
+	font-weight: 500;
+	height: 46px;
+	cursor: pointer;
+	text-align: center;
+	display: inline-block;
+	white-space: nowrap;
+	transition: $trsn-dur-lg;
+	padding: 0 15px;
+	border-radius: $br-default;
+	box-shadow: 3.5px 3.5px 5px 0 rgba(0, 0, 0, 0.2);
+
+	// Filled buttons
+
+	&.filled {
+		border: 0;
+		color: #ffffff;
+		line-height: 46px;
+
+		@each $key,$val in $color-palette {
+			&.#{$key} {
+				background-color: #{$val};
+			}
+		}
+	}
+
+	// Outline buttons
+
+	&.outline {
+		line-height: 42px;
+		background-color: #fff;
+		border: 2px solid transparent;
+
+		@each $key,$val in $color-palette {
+			&.#{$key} {
+				border-color: #{$val};
+				color: #{$val};
+			}
+		}
+	}
+
+	// Link buttons
+
+	&.link {
+		border: 0;
+		line-height: 46px;
+		background-color: transparent;
+		text-decoration: underline;
+		box-shadow: none;
+
+		@each $key,$val in $color-palette {
+			&.#{$key} {
+				color: #{$val};
+			}
+		}
+
+		&:active{
+			background-color: transparent!important;
+		}
+	}
+
+	&:hover {
+		opacity: 0.7;
+	}
+
+	&[disabled], &.disabled {
+		border: 0;
+		pointer-events: none;
+		line-height: 46px;
+		color: rgba(#FFFFFF, 0.6);
+
+		&.disabled {
+			background-color: $color-disable!important;
+		}
+	}
+
+	&:active{
+		background-color: $color-pressed!important;
+	}
+
+	// Buttons sizes
+
+	&.w-sm {
+		min-width: 125px;
+	}
+
+	&.w-lg {
+		min-width: 185px;
+	}
+
+	&.with-icon {
+
+		.icon {
+			font-size: 24px;
+			vertical-align: middle;
+		}
+
+		span {
+			margin-left: 10px;
+		}
+	}
+}
+
+/* Buttons including icons */
+
+.btn-icon {
+	background: none;
+	border: none;
+	cursor: pointer;
+	transition: $trsn-dur;
+
+	&:hover {
+		opacity: 0.7;
+	}
+
+	i {
+		vertical-align: middle;
+	}
+}

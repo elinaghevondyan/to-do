@@ -1,0 +1,125 @@
+/* Text field styles */
+
+.text-field {
+	position: relative;
+	margin-bottom: 25px;
+
+	&.no-margin {
+		margin-bottom: 0;
+	}
+
+	input, select, textarea {
+		transition: $trsn-dur-md;
+		width: 100%;
+		margin-bottom: 0;
+
+		&::placeholder {
+			color: $color-black-60;
+			font-family: $font-primary;
+			font-weight: 500;
+			font-size: $fs-sm;
+			transition: $trsn-dur-md;
+		}
+
+		&:focus {
+
+			&::placeholder {
+				color: $color-black-70;
+			}
+		}
+	}
+
+	input[type=date]::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		display: none;
+	}
+
+	textarea {
+		resize: none;
+		padding: 15px;
+	}
+
+	// Transparent input styles
+
+	&.transparent {
+
+		input, textarea {
+			background-color: transparent;
+			border: 1px solid transparent;
+			font-size: $fs-lg;
+			font-family: $font-primary;
+			color: $color-tertiary;
+			padding: 0 30px 0 15px;
+		}
+
+		input {
+			height: 46px;
+		}
+	}
+
+	// Bordered text-field styles
+
+	&.bordered {
+
+		input, textarea, select {
+			font-size: $fs-xs;
+			border: 1px solid $color-black-30;
+
+			&:focus, &:active {
+				border-color: $color-black-70;
+			}
+		}
+
+		input, select {
+			padding: 10px 20px;
+			line-height: 28px;
+			height: 46px;
+		}
+
+		textarea {
+			padding: 15px 20px;
+		}
+
+		&.invalid {
+
+			input, textarea {
+				border-color: $color-warning;
+			}
+		}
+	}
+
+	// Icon from right
+
+	&.icon-right {
+
+		.icon {
+			position: absolute;
+			z-index: 1;
+			right: 4px;
+			@include YAlign();
+			font-size: $fs-xl;
+			color: $color-black-30;;
+		}
+	}
+
+	&.pl-0 {
+
+		input, textarea {
+			padding-left: 0;
+		}
+	}
+}
+
+.error-msg {
+	font-size: 11px;
+	margin-top: 5px;
+	color: $color-warning;
+}
+
+.field-label {
+	font-size: $fs-sm;
+	color: $color-black-70;
+	margin-bottom: 5px;
+	display: block;
+}
+
