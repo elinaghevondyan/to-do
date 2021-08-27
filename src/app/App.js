@@ -1,20 +1,27 @@
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import routeConfigs from "./routeConfigs";
+
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <Router>
+          <Switch>
+            {
+              routeConfigs().map( ({exact, path, component }) => (
+                  <Route
+                      key={path}
+                      exact={exact}
+                      path={path}
+                      component={component}
+                  />
+              ))
+            }
+          </Switch>
+        </Router>
+      </div>
   );
 }
 
