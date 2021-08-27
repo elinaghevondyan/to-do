@@ -1,4 +1,5 @@
-[
+{
+"toDoList" : [
     {
       "id": 1,
       "name": "reading my favorite book",
@@ -8,3 +9,4 @@
       "allow_notification": true
     }
 ]
+}
