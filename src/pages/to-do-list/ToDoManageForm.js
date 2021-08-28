@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import InputField from "../../components/InputField";
 import ToggleSwitch from "../../components/ToggleSwitch";
 import {request} from "../../services/network/requests";
+import {formatDateForPicker} from "../../services/util/common";
 
 /**
  * @description Manage(add, edit) single item form component.
@@ -26,7 +27,7 @@ export default function ToDoManageForm({toDoFormData, setToDoFormData}) {
                             <InputField
                                 name="name"
                                 className='bordered'
-                                placeholder='Name*'
+                                placeholder='Name'
                                 value={toDoFormData?.name}
                                 onChange={handleChange}
                             />
@@ -35,7 +36,7 @@ export default function ToDoManageForm({toDoFormData, setToDoFormData}) {
                             <InputField
                                 name="description"
                                 className='bordered'
-                                placeholder='Description*'
+                                placeholder='Description'
                                 value={toDoFormData?.description || ''}
                                 onChange={handleChange}
                             />

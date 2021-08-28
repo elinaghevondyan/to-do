@@ -3,12 +3,13 @@ import Button from "../../components/Button";
 import Icon from "../../components/Icon";
 import ToDoManageForm from "./ToDoManageForm";
 import {request} from "../../services/network/requests";
+import {formatDate} from "../../services/util/common";
 
 /**
  * @description Manage(add, edit) to do single item component.
  */
 
-export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDoList, markEdit, setMarkEdit, selectedToDoItem}) {
+export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDoList, markEdit, setMarkEdit, selectedToDoItem, setSelectedToDoItem}) {
     let addToDoRequestUrl = `toDoList`;
     const [singleToDoData, setSingleToDoData] = useState({});
     const initialValues = {
@@ -27,6 +28,9 @@ export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDo
 
     function closeModal() {
         setModalOpen(false);
+        setMarkEdit(false);
+        setSelectedToDoItem(null)
+
     }
 
     const handleSubmit = async (e) => {
@@ -34,13 +38,20 @@ export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDo
         const requestOptions = {
             method: !markEdit ? 'POST' : "PUT",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                name:  toDoFormData.name,
-                description: toDoFormData.description,
-                starting_at: toDoFormData.starting_at,
-                allow_notification: toDoFormData.allow_notification
-                }
-            )
+            body: !markEdit ?
+                JSON.stringify({
+                    name:  toDoFormData.name,
+                    description: toDoFormData.description,
+                    starting_at: toDoFormData.starting_at,
+                    allow_notification: toDoFormData.allow_notification,
+                    created: formatDate(new Date())
+                }) : JSON.stringify({
+                        name:  toDoFormData.name,
+                        description: toDoFormData.description,
+                        starting_at: toDoFormData.starting_at,
+                        allow_notification: toDoFormData.allow_notification
+                    }
+                )
         };
         if(markEdit) {
             await request(manageToDoDataRequestUrl, requestOptions, setManageToDoAction);
@@ -57,7 +68,7 @@ export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDo
             headers: { 'Content-Type': 'application/json' },
         };
         request(manageToDoDataRequestUrl, requestOptions, setSingleToDoData);
-    }
+    };
 
 
     useEffect( () => {
@@ -67,11 +78,11 @@ export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDo
     }, [markEdit]);
 
     useEffect( () => {
-      if(setToDoFormData) {
-          setToDoFormData(
-            singleToDoData?.response
-          )
-      }
+        if(setToDoFormData) {
+            setToDoFormData(
+                singleToDoData?.response
+            )
+        }
     }, [singleToDoData?.response]);
 
     return (
@@ -82,7 +93,7 @@ export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDo
                         <div className="card-header flex align-center justify-between">
                             <h3 className="modal-title">
                                 {
-                                    !markEdit ? " Add To Do Items" : "Edit To Do Items"
+                                    !markEdit ? "Add To Do Items" : "Edit To Do Items"
                                 }
                             </h3>
                             <Button
@@ -107,9 +118,9 @@ export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDo
                                 className="filled w-sm primary mr-3"
                                 onClick={handleSubmit}
                             >
-                               {
-                                   !markEdit ? "Add" : "Edit"
-                               }
+                                {
+                                    !markEdit ? "Add" : "Edit"
+                                }
                             </Button>
                             <Button
                                 className="filled w-sm tertiary"

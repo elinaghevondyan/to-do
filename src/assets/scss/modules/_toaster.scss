@@ -1,0 +1,26 @@
+/* Animations */
+
+.toaster-list {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    width: 100%;
+    max-width: 300px;
+
+    li {
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    .toaster {
+        padding: 20px;
+        height: 100px;
+        background-color: rgba($color-primary, 0.6);
+        color: white;
+
+        .btn-icon {
+            position: absolute;
+            right: 15px
+        }
+    }
+}
