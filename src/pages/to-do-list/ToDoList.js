@@ -35,7 +35,6 @@ export default function ToDoList() {
 
     useEffect(() => {
         const intervalMinute = 60000;
-        // let newList = [...upcomingToDoList];
         const interval = setInterval(() => {
             let earlyDate = new Date();
             let currentDate = new Date();

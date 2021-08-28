@@ -6,7 +6,7 @@ import Button from "./Button";
  * @description Toaster component
  */
 
-export default function Toaster ({ name, className = '', description, onClick }) {
+export default function Toaster ({ name, description, onClick }) {
 
     return (
         <div className={`toaster`}>
