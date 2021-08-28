@@ -21,16 +21,20 @@ export default function ToDoList() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     };
+    const [updateToDoList, setUpdateToDoList] = useState(false);
 
     const init = () => {
         request(requestUrl, requestOptions, setToDoListData);
+        if(updateToDoList) {
+            setUpdateToDoList(false)
+        }
     };
 
     function openModal() {
         setModalOpen(true);
     }
 
-    useEffect( () => {init()}, []);
+    useEffect( () => {init()}, [updateToDoList]);
 
     return (
         <>
@@ -138,6 +142,7 @@ export default function ToDoList() {
                 <ToDoSingleManage
                     modalOpen={modalOpen}
                     setModalOpen={setModalOpen}
+                    setUpdateToDoList={setUpdateToDoList}
                 />
             }
 
