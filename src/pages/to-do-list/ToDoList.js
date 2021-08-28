@@ -12,7 +12,7 @@ import ShowToDoList from "./ShowToDoList";
 
 export default function ToDoList() {
     const [toDoListData, setToDoListData] = useState({
-        response: [],
+        response: null,
         error: false,
         loading: false,
     });
@@ -46,10 +46,9 @@ export default function ToDoList() {
             toDoListData?.response?.forEach(function(element){
                 if((setDateSecondsToZero(element.starting_at) === setDateSecondsToZero(new Date()) || setDateSecondsToZero(element.starting_at) === formatedEarlyDate) && element.allow_notification) {
                     arr.push(element);
-                    setUpcomingToDoList([...upcomingToDoList, ...arr]);
                 }
-
             });
+            setUpcomingToDoList([...upcomingToDoList, ...arr]);
         }, intervalMinute);
 
         return () => clearInterval(interval);
