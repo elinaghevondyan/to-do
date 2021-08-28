@@ -9,7 +9,7 @@ export default function ToggleSwitch({name, type, checked, onChange, labelText})
     return(
         <label className="toggle-switch">
             <input
-                    name={name}
+                   name={name}
                    type={type}
                    checked={checked}
                    onChange={onChange}

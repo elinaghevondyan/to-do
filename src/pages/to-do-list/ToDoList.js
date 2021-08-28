@@ -3,6 +3,7 @@ import Button from "../../components/Button";
 import Icon from "../../components/Icon";
 import {request} from "../../services/network/requests";
 import {formatDate} from "../../services/util/common";
+import ToDoSingleManage from "./ToDoSingleManage";
 
 /**
  * @description To Do items list.
@@ -97,7 +98,7 @@ export default function ToDoList() {
                                                 {data.starting_at}
                                             </td>
                                             <td>
-                                                {data.allow_notification}
+                                                {data.allow_notification ? "Yes" : "No"}
                                             </td>
                                             <td>
                                                 <ul className="actions">
@@ -132,6 +133,14 @@ export default function ToDoList() {
                     {/* To Do table -- end */}
                 </div>
             </div>
+            {
+                modalOpen &&
+                <ToDoSingleManage
+                    modalOpen={modalOpen}
+                    setModalOpen={setModalOpen}
+                />
+            }
+
         </>
     )
 }

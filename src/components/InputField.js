@@ -28,7 +28,6 @@ export default function InputField({
                 disabled={disabled}
                 value={value}
                 onClick={handleClick}
-                className='text-field'
                 placeholder={placeholder}
             />
             { errorMessage && <p className='error-msg'>{errorMessage}</p> }
