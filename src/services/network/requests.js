@@ -8,6 +8,7 @@ export const request = (url, requestOptions, setRequestData) => {
             const data = await response.json();
             setRequestData({
                 response: data,
+                success: true,
                 error: !response.ok,
                 loading: false,
             });

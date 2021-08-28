@@ -15,6 +15,12 @@ export default function ToDoList() {
         error: false,
         loading: false,
     });
+    const [deleteToDoItem, setDeleteToDoItem] = useState({
+        response: null,
+        error: false,
+        success: null,
+        loading: false,
+    });
     let requestUrl = 'toDoList';
     const requestOptions = {
         method: 'GET',
@@ -30,6 +36,12 @@ export default function ToDoList() {
         if(updateToDoList) {
             setUpdateToDoList(false)
         }
+        if(deleteToDoItem.success) {
+           setDeleteToDoItem({
+               success: null,
+               }
+           )
+        }
     };
 
     function openModal() {
@@ -42,8 +54,17 @@ export default function ToDoList() {
         openModal();
     };
 
+    const handleDelete = async (id) => {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        let deleteRequestUrl = `toDoList/${id}`;
 
-    useEffect( () => {init()}, [updateToDoList]);
+        await request(deleteRequestUrl, requestOptions, setDeleteToDoItem);
+    };
+
+    useEffect( () => {init()}, [updateToDoList, deleteToDoItem.success]);
 
     return (
         <>
@@ -84,13 +105,13 @@ export default function ToDoList() {
                             </tr>
                             </thead>
                             <tbody>
-                            {toDoListData?.loading && <tr>
+                            {toDoListData?.response?.loading && <tr>
                                 <td colSpan={6}>
                                     <p className="text-center">Loading ...</p>
                                 </td>
                             </tr>
                             }
-                            {toDoListData?.response?.length === 0 || !toDoListData?.response ? <tr>
+                            {toDoListData?.response?.length === 0 ? <tr>
                                     <td colSpan={6}>
                                         <p className="text-center">No data to show</p>
                                     </td>
@@ -129,6 +150,7 @@ export default function ToDoList() {
                                                     <li>
                                                         <Button
                                                             className="btn-icon"
+                                                            onClick={() => handleDelete(data.id)}
                                                         >
                                                             <Icon
                                                                 name="clear"
