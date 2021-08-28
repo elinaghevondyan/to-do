@@ -1,12 +1,12 @@
 {
   "toDoList": [
     {
-      "name": "dfgdg show",
-      "description": "dfgdfg",
+      "name": "To do item",
+      "description": "Something to do",
       "starting_at": "2021-08-28T22:18",
       "allow_notification": true,
       "created": "2021-08-28 10:16:56",
       "id": 1
-    },
+    }
   ]
 }
