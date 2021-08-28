@@ -10,7 +10,6 @@ import ToDoSingleManage from "./ToDoSingleManage";
  */
 
 export default function ToDoList() {
-    const [modalOpen, setModalOpen] = useState(false);
     const [toDoListData, setToDoListData] = useState({
         response: null,
         error: false,
@@ -21,7 +20,10 @@ export default function ToDoList() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     };
+    const [modalOpen, setModalOpen] = useState(false);
+    const [markEdit, setMarkEdit] = useState(false);
     const [updateToDoList, setUpdateToDoList] = useState(false);
+    const [selectedToDoItem, setSelectedToDoItem] = useState(false);
 
     const init = () => {
         request(requestUrl, requestOptions, setToDoListData);
@@ -33,6 +35,13 @@ export default function ToDoList() {
     function openModal() {
         setModalOpen(true);
     }
+
+    const handleEdit = async  (id) => {
+        setMarkEdit(true);
+        await setSelectedToDoItem(id);
+        openModal();
+    };
+
 
     useEffect( () => {init()}, [updateToDoList]);
 
@@ -109,6 +118,7 @@ export default function ToDoList() {
                                                     <li>
                                                         <Button
                                                             className="btn-icon"
+                                                            onClick={() => handleEdit(data.id)}
                                                         >
                                                             <Icon
                                                                 name="edit"
@@ -143,6 +153,9 @@ export default function ToDoList() {
                     modalOpen={modalOpen}
                     setModalOpen={setModalOpen}
                     setUpdateToDoList={setUpdateToDoList}
+                    markEdit={markEdit}
+                    setMarkEdit={setMarkEdit}
+                    selectedToDoItem={selectedToDoItem}
                 />
             }
 

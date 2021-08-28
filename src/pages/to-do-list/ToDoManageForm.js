@@ -14,9 +14,9 @@ export default function ToDoManageForm({toDoFormData, setToDoFormData}) {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         setToDoFormData({
-           ...toDoFormData,
+            ...toDoFormData,
             [name] : value,
-        })
+        });
     };
 
         return (
@@ -27,6 +27,7 @@ export default function ToDoManageForm({toDoFormData, setToDoFormData}) {
                                 name="name"
                                 className='bordered'
                                 placeholder='Name*'
+                                value={toDoFormData?.name}
                                 onChange={handleChange}
                             />
                         </div>
@@ -35,6 +36,7 @@ export default function ToDoManageForm({toDoFormData, setToDoFormData}) {
                                 name="description"
                                 className='bordered'
                                 placeholder='Description*'
+                                value={toDoFormData?.description || ''}
                                 onChange={handleChange}
                             />
                         </div>
@@ -46,6 +48,7 @@ export default function ToDoManageForm({toDoFormData, setToDoFormData}) {
                                 type='datetime-local'
                                 className='bordered'
                                 placeholder='Select start time*'
+                                value={toDoFormData?.starting_at || ''}
                                 onChange={handleChange}
                             />
                         </div>
@@ -54,6 +57,7 @@ export default function ToDoManageForm({toDoFormData, setToDoFormData}) {
                                 name="allow_notification"
                                 labelText="Allow Notification"
                                 type="checkbox"
+                                checked={toDoFormData?.allow_notification}
                                 onChange={handleChange}
                             />
                         </div>

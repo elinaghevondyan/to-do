@@ -8,20 +8,22 @@ import {request} from "../../services/network/requests";
  * @description Manage(add, edit) to do single item component.
  */
 
-export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDoList}) {
-    const initialData = {
+export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDoList, markEdit, setMarkEdit, selectedToDoItem}) {
+    let addToDoRequestUrl = `toDoList`;
+    const [singleToDoData, setSingleToDoData] = useState({});
+    const initialValues = {
         name: '',
         description: '',
         starting_at: null,
         allow_notification: false,
     };
-    let addToDoRequestUrl = `toDoList`;
-    const [toDoFormData, setToDoFormData] = useState(initialData);
+    const [toDoFormData, setToDoFormData] = useState(singleToDoData?.response || initialValues);
     const [manageToDoAction, setManageToDoAction] = useState({
         response: null,
         error: false,
         loading: false,
     });
+    let manageToDoDataRequestUrl = `toDoList/${selectedToDoItem}`;
 
     function closeModal() {
         setModalOpen(false);
@@ -30,7 +32,7 @@ export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDo
     const handleSubmit = async (e) => {
         e.preventDefault();
         const requestOptions = {
-            method: 'POST',
+            method: !markEdit ? 'POST' : "PUT",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name:  toDoFormData.name,
@@ -40,10 +42,37 @@ export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDo
                 }
             )
         };
-        await request(addToDoRequestUrl, requestOptions, setManageToDoAction);
+        if(markEdit) {
+            await request(manageToDoDataRequestUrl, requestOptions, setManageToDoAction);
+        } else {
+            await request(addToDoRequestUrl, requestOptions, setManageToDoAction);
+        }
         setUpdateToDoList(true);
         setModalOpen(false)
     };
+
+    const getToDoItemData = () => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        request(manageToDoDataRequestUrl, requestOptions, setSingleToDoData);
+    }
+
+
+    useEffect( () => {
+        if(markEdit && selectedToDoItem) {
+            getToDoItemData();
+        }
+    }, [markEdit]);
+
+    useEffect( () => {
+      if(setToDoFormData) {
+          setToDoFormData(
+            singleToDoData?.response
+          )
+      }
+    }, [singleToDoData?.response]);
 
     return (
         <>
@@ -52,7 +81,9 @@ export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDo
                     <div className="modal-content card shadow mt-10">
                         <div className="card-header flex align-center justify-between">
                             <h3 className="modal-title">
-                                Add To Do Items
+                                {
+                                    !markEdit ? " Add To Do Items" : "Edit To Do Items"
+                                }
                             </h3>
                             <Button
                                 className="btn-icon"
@@ -76,7 +107,9 @@ export default function ManageToDoSingle({modalOpen, setModalOpen, setUpdateToDo
                                 className="filled w-sm primary mr-3"
                                 onClick={handleSubmit}
                             >
-                                Add
+                               {
+                                   !markEdit ? "Add" : "Edit"
+                               }
                             </Button>
                             <Button
                                 className="filled w-sm tertiary"
