@@ -3,8 +3,8 @@ import Button from "../../components/Button";
 import Icon from "../../components/Icon";
 import {request} from "../../services/network/requests";
 import ToDoSingleManage from "./ToDoSingleManage";
-import {formatDate, formatDateForPicker, setDateSecondsToZero} from "../../services/util/common";
-import ShowToDoList from "./showToDoList";
+import {formatDate,setDateSecondsToZero} from "../../services/util/common";
+import ShowToDoList from "./ShowToDoList";
 
 /**
  * @description To Do items list.
@@ -33,7 +33,7 @@ export default function ToDoList() {
     const [selectedToDoItem, setSelectedToDoItem] = useState(false);
     const [upcomingToDoList, setUpcomingToDoList] = useState([]);
 
-    useEffect(() => {
+    const manageToaster = () => {
         const intervalMinute = 60000;
         const interval = setInterval(() => {
             let earlyDate = new Date();
@@ -50,9 +50,13 @@ export default function ToDoList() {
                 }
 
             });
-            }, intervalMinute);
+        }, intervalMinute);
 
-            return () => clearInterval(interval);
+        return () => clearInterval(interval);
+    }
+
+    useEffect(() => {
+       manageToaster();
         }, [toDoListData?.response, upcomingToDoList]);
 
         const init = () => {

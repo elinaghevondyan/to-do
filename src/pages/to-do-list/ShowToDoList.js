@@ -7,10 +7,6 @@ import Toaster from "../../components/Toaster";
 
 export default function ShowToDoList({upcomingToDoList, setUpcomingToDoList}) {
 
-    useEffect(() => {
-
-    }, [upcomingToDoList]);
-
     const removeToDoToaster = (i) => {
         let updatedUpcomingList = [...upcomingToDoList.slice(0, i), ...upcomingToDoList.slice(i + 1)];
         setUpcomingToDoList(updatedUpcomingList);
