@@ -12,7 +12,7 @@ import ShowToDoList from "./ShowToDoList";
 
 export default function ToDoList() {
     const [toDoListData, setToDoListData] = useState({
-        response: null,
+        response: [],
         error: false,
         loading: false,
     });
